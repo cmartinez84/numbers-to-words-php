@@ -49,12 +49,13 @@
         {
             //Arrange
             $test_NumberToWords = new NumberToWords;
-            $number = "003000";
+            $number = 111999;
             //Act
             $output = $test_NumberToWords->addThousandSuffix($number);
             //Assert
             $this->assertEquals("three thousand ", $output);
         }
+
 
 
 

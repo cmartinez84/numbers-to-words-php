@@ -7,27 +7,29 @@
 
         function getSingleAndDouble($number)
         {
+            $number = intval($number);
             if($number < 20 && $number >= 0){
-                $word = $this->zeroNineteenArray[$number];
+                $word = $this->zeroNineteenArray[$number] . " ";
                 return $word;
             } else {
                 $firstNumber = substr($number, 0, 1) * 10;
                 $secondNumber = substr($number, 1, 1);
 
                 if($secondNumber != 0){
-                    $word = $this->tensArray[$firstNumber] ." ". $this->zeroNineteenArray[$secondNumber];
+                    $word = $this->tensArray[$firstNumber] ." ". $this->zeroNineteenArray[$secondNumber] . " ";
                     return $word;
                 } else {
-                    $word = $this->tensArray[$firstNumber];
+                    $word = $this->tensArray[$firstNumber] . " ";
                     return $word;
                 }
             }
         }
 
         function getThreeDigits ($number) {
+            $number = intval($number);
             $firstnumber = substr($number, 0, 1);
             $restOfNumber = intval(substr($number, 1, 2));
-            $word = $this->getSingleAndDouble($firstnumber) . " hundred ";
+            $word = $this->getSingleAndDouble($firstnumber) . "hundred ";
             if ($restOfNumber > 0) {
                 $word = $word . $this->getSingleAndDouble($restOfNumber);
             }
@@ -35,17 +37,26 @@
         }
 
         function addThousandSuffix ($number) {
-
-            if ($number > 1000 && $number < 100000) {
-
+            $word = "";
+            if (strlen($number) == 4) {
+                $firstnumber = intval(substr($number, -4, 1));
+                $word = $this->getSingleAndDouble($firstnumber) . "thousand ";
+            } elseif (strlen($number) == 5) {
+                $firstnumber = intval(substr($number, -5, 2));
+                $word = $this->getSingleAndDouble($firstnumber) . "thousand ";
+            } else {
                 $firstnumber = intval(substr($number, -6, 3));
-                $restOfNumber = intval(substr($number, 1, 5));
-                $word = $this->getSingleAndDouble($firstnumber) . " thousand ";
-                if ($restOfNumber > 0) {
-                    $word = $word . $this->getThreeDigits($restOfNumber);
-                }
-                return $word;
+                $word = $this->getThreeDigits($firstnumber) . "thousand ";
             }
+
+            $restOfNumber = intval(substr($number, -3));
+
+            if ($restOfNumber > 0) {
+                $word = $word . $this->getThreeDigits($restOfNumber);
+            } else {
+                $word = $this->getThreeDigits($number);
+            }
+            return $word;
         }
 
 
