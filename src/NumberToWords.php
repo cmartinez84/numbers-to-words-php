@@ -37,7 +37,6 @@
         }
 
         function addThousandSuffix ($number) {
-            $word = "";
             if (strlen($number) == 4) {
                 $firstnumber = intval(substr($number, -4, 1));
                 $word = $this->getSingleAndDouble($firstnumber) . "thousand ";
@@ -58,9 +57,70 @@
             }
             return $word;
         }
+        function addMillionsSuffix ($number) {
+            if (strlen($number) == 7) {
+                $firstnumber = intval(substr($number, -7, 1));
+                $word = $this->getSingleAndDouble($firstnumber) . "million ";
+            } elseif (strlen($number) == 8) {
+                $firstnumber = intval(substr($number, -8, 2));
+                $word = $this->getSingleAndDouble($firstnumber) . "million ";
+            } else {
+                $firstnumber = intval(substr($number, -9, 3));
+                $word = $this->getThreeDigits($firstnumber) . "million ";
+            }
 
+            $restOfNumber = intval(substr($number, -6));
 
+            if ($restOfNumber > 0) {
+                $word = $word . $this->addThousandSuffix($restOfNumber);
+            } else {
+                $word = $this->getThreeDigits($number);
+            }
+            return $word;
+        }
 
+        function addBillionsSuffix ($number) {
+            if (strlen($number) == 10) {
+                $firstnumber = intval(substr($number, -10, 1));
+                $word = $this->getSingleAndDouble($firstnumber) . "billion ";
+            } elseif (strlen($number) == 11) {
+                $firstnumber = intval(substr($number, -11, 2));
+                $word = $this->getSingleAndDouble($firstnumber) . "billion ";
+            } else {
+                $firstnumber = intval(substr($number, -12, 3));
+                $word = $this->getThreeDigits($firstnumber) . "billion ";
+            }
 
+            $restOfNumber = intval(substr($number, -9));
+
+            if ($restOfNumber > 0) {
+                $word = $word . $this->addMillionsSuffix($restOfNumber);
+            } else {
+                $word = $this->getThreeDigits($number);
+            }
+            return $word;
+        }
+
+        function addTrillionsSuffix ($number) {
+            if (strlen($number) == 13) {
+                $firstnumber = intval(substr($number, -13, 1));
+                $word = $this->getSingleAndDouble($firstnumber) . "trillion ";
+            } elseif (strlen($number) == 14) {
+                $firstnumber = intval(substr($number, -14, 2));
+                $word = $this->getSingleAndDouble($firstnumber) . "trillion ";
+            } else {
+                $firstnumber = intval(substr($number, -15, 3));
+                $word = $this->getThreeDigits($firstnumber) . "trillion ";
+            }
+
+            $restOfNumber = intval(substr($number, -12));
+
+            if ($restOfNumber > 0) {
+                $word = $word . $this->addBillionsSuffix($restOfNumber);
+            } else {
+                $word = $this->getThreeDigits($number);
+            }
+            return $word;
+        }
     }
 ?>

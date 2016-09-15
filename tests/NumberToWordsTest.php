@@ -10,7 +10,7 @@
             //Act
             $output = $test_NumberToWords->getSingleAndDouble($number);
             //Assert
-            $this->assertEquals("six", $output);
+            $this->assertEquals("six ", $output);
         }
 
         function test_getSingleAndDouble_two_digit()
@@ -21,7 +21,7 @@
             //Act
             $output = $test_NumberToWords->getSingleAndDouble($number);
             //Assert
-            $this->assertEquals("twenty three", $output);
+            $this->assertEquals("twenty three ", $output);
         }
         function test_getSingleAndDouble_multiple_of_ten()
         {
@@ -31,7 +31,7 @@
             //Act
             $output = $test_NumberToWords->getSingleAndDouble($number);
             //Assert
-            $this->assertEquals("thirty", $output);
+            $this->assertEquals("thirty ", $output);
         }
 
         function test_getThreeDigits()
@@ -53,7 +53,40 @@
             //Act
             $output = $test_NumberToWords->addThousandSuffix($number);
             //Assert
-            $this->assertEquals("three thousand ", $output);
+            $this->assertEquals("one hundred eleven thousand nine hundred ninety nine ", $output);
+        }
+        function test_addMillionsSuffix()
+        {
+            //Arrange
+            $test_NumberToWords = new NumberToWords;
+            $number = 9111999;
+            //Act
+            $output = $test_NumberToWords->addMillionsSuffix($number);
+            //Assert
+            $this->assertEquals("nine million one hundred eleven thousand nine hundred ninety nine ", $output);
+        }
+        function test_addBillionsSuffix()
+        {
+            //Arrange
+            $test_NumberToWords = new NumberToWords;
+            $number = 29111999;
+            //Act
+            $output = $test_NumberToWords->addBillionsSuffix($number);
+            //Assert
+            $this->assertEquals("two hundred ninety one billion twenty nine million one hundred eleven thousand nine hundred ninety nine ", $output);
+        }
+
+
+
+        function test_addTrillionsSuffix()
+        {
+            //Arrange
+            $test_NumberToWords = new NumberToWords;
+            $number = 9111999;
+            //Act
+            $output = $test_NumberToWords->addTrillionsSuffix($number);
+            //Assert
+            $this->assertEquals("nine hundred eleven trillion nine hundred eleven billion nine million one hundred eleven thousand nine hundred ninety nine ", $output);
         }
 
 
