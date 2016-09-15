@@ -11,13 +11,18 @@ _This is a web page which suggests which coding track to take based on user inpu
 ## Specifications
 | Behavior | Input Ex. | Output Ex. |
 | --- | --- | --- |
-| Determine Single Number |  9 |  "nine" |
-| Determine Double Number |  93 |  "ninety-three" |
-| Determine Three Digit Numbers |  935 |  "nine hundred thirty-five" |
-| Determine Four Digit Numbers |  9350 |  "nine thousand, three hundred fifty" |
-| Determine Five Digit Numbers |  93501 |  "ninety-three thousand, five hundred one" |
-| Determine Six Digit Numbers |  935014 |  "nine hundred thirty-five thousand, fourteen" |
-| Determine Seven Digit Numbers |  9350146 |  "nine million, three hundred fifty thousand, one hundred forty-six" |
+| Numbers 0-19 have their own unique names |  9 |  "nine" |
+| Numbers 1-9 are used as suffixes in proceeding numbers, but not number 0| 34| thirty-four|
+| Multiples of ten have unique IDs|20, 30, 40, etc | twenty, thirty, forty, etc.|
+| Double digit numbers, 21-99, are a concatination of the first digit's ID plus the name of the multiple of ten|  93 |  "ninety-three" |
+|At three digits, the first number name is followed "hundred"| 935|"nine hundred thirty-five"|
+| At four digit, the first number name is followed by "thousand"  |  9,350 |  "nine thousand, three hundred fifty" |
+|At five digits, the first two numbers follow the rules for two digit number names, plus the word "thousand"  |  93501 |  "ninety-three thousand, five hundred one" |
+| At six digit, the first three numbers follow the rules for three digit number names, plus the word thousand |  935,014 |  "nine hundred thirty-five thousand, fourteen" |
+| One million(7-9 digits), one billon(10-12 digits), and one trillion(13-16) follow the same rules for groups of three numbers plus their quantity name |  9350146 |  "nine million, three hundred fifty thousand, one hundred forty-six" |
+
+
+///testing
 | Determine Eight Digit Numbers |  93501469 |  "ninety-three million, five hundred one thousand, four hundred sixty-nine" |
 | Determine nine Digit Numbers |  935014699 |  "nine hundred thirty-five million, fourteen thousand, six hundred ninety-nine
 " |
